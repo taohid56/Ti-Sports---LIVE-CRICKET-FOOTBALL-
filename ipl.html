@@ -11,29 +11,37 @@
             text-align: center;
             margin: 0;
             padding: 0;
-            background-color: #ffffff;
+            background-color: black;
         }
         .header {
-            background: #fff;
+            background: rgba(0, 0, 0, 0.8);
             padding: 15px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
         }
-        .header img {
-            height: 30px;
-        }
+
         .menu-icon {
-            width: 30px;
-            height: 30px;
-            background: #e9ecef;
-            border-radius: 5px;
+            width: 35px;
+            height: 35px;
+            background: #ff4747;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 20px;
+            font-weight: bold;
             cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .menu-icon:hover {
+            transform: rotate(90deg);
+            background: #ff1212;
         }
         .video-container {
             width: 100%;
@@ -64,11 +72,10 @@
 </head>
 <body>
 
-    <!-- Header -->
-    <header class="header">
-        <img src="https://1000logos.net/wp-content/uploads/2022/08/IPL-sponsorship-Logo-2022.png" alt="Champions Trophy">
+    <div class="header">
+        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiwgcxYkWtTiQMYqlP-w56pcX3AI7rtfLxcl061Lyb7oZMITL7z3ZVlZOHbZWSyQc_cRsenghyphenhyphenBIRWfM9KftxM_sd2Jd7jnao5ZT9NxR2AYt5BVUbixj7e9R_e1zMeJlnHfuyN_afrEkdk304frtdYUjSLYpr6zdWMKQM-c-GZZZmYXV39522iCMIxV5rE/s2916/IMG-20250130-183747.jpg" alt="ইমেজ চোর 😆" width="100">
         <div class="menu-icon">☰</div>
-    </header>
+    </div>
 
     <!-- Video Player -->
     <div class="video-container">
