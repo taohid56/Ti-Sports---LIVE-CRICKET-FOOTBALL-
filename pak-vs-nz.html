@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PLAYER | PAKISTAN VS NEW ZEALAND</title>
+    <script src="https://content.jwplatform.com/libraries/SAHhwvZq.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+        }
+        .header {
+            background: #fff;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .header img {
+            height: 30px;
+        }
+        .menu-icon {
+            width: 30px;
+            height: 30px;
+            background: #e9ecef;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        .video-container {
+            width: 100%;
+            max-width: 700px;
+            margin: 10px auto;
+        }
+        #player {
+            width: 100%;
+            height: 250px;
+        }
+        .server-buttons {
+            margin-top: 10px;
+        }
+        .server-buttons button {
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            border: 2px solid blue;
+            background: white;
+            cursor: pointer;
+        }
+        .server-buttons button:hover {
+            background: blue;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiwgcxYkWtTiQMYqlP-w56pcX3AI7rtfLxcl061Lyb7oZMITL7z3ZVlZOHbZWSyQc_cRsenghyphenhyphenBIRWfM9KftxM_sd2Jd7jnao5ZT9NxR2AYt5BVUbixj7e9R_e1zMeJlnHfuyN_afrEkdk304frtdYUjSLYpr6zdWMKQM-c-GZZZmYXV39522iCMIxV5rE/s2916/IMG-20250130-183747.jpg" alt="Pak Vs Nz">
+        <div class="menu-icon">☰</div>
+    </header>
+
+    <!-- Video Player -->
+    <div class="video-container">
+        <div id="player"></div>
+    </div>
+
+    <!-- Server Switch Buttons -->
+    <div class="server-buttons">
+        <button onclick="changeServer(1)">SERVER 1</button>
+        <button onclick="changeServer(2)">SERVER 2</button>
+        <button onclick="changeServer(3)">SERVER 3</button>
+    </div>
+
+    <script>
+        // 🎯 সব ধরনের লিংক (M3U8, MPD, MP4, TS, CDN) সাপোর্ট করবে
+        var servers = {
+            1: "https://live.tsports.com/mobile_hls/tsports_live_2/playlist.m3u8",  // HLS (M3U8)
+            2: "https://1a-1791.com/live/v0xi25uh/slot-111/rgci-lz9s_1080p/chunklist_DVR.m3u8",  // HLS (M3U8)
+            3: "https://dash.akamaized.net/envivio/EnvivioDash3/manifest.mpd" // DASH (MPD)
+        };
+
+        // 🔥 JW Player ইনিশিয়ালাইজ (Default: Server 1)
+        var player = jwplayer("player").setup({
+            file: servers[1], 
+            width: "100%",
+            aspectratio: "16:9",
+            autostart: true,
+            controls: true,
+            type: detectType(servers[1])
+        });
+
+        // 🎯 ফাইল টাইপ সনাক্তকরণ ফাংশন (MPD, M3U8, MP4 ইত্যাদি)
+        function detectType(url) {
+            if (url.includes(".m3u8")) return "hls";
+            if (url.includes(".mpd")) return "dash";
+            if (url.includes(".mp4")) return "mp4";
+            if (url.includes(".ts")) return "mp4"; // TS ফরম্যাট MP4 হিসেবে কাজ করে
+            return "video";
+        }
+
+        // 🔄 সার্ভার পরিবর্তন ফাংশন
+        function changeServer(serverNumber) {
+            if (!servers[serverNumber]) return;
+
+            var newSource = servers[serverNumber];
+
+            // 🛑 পুরোনো প্লেয়ার মুছে ফেলুন
+            jwplayer("player").remove();
+
+            // 🔥 নতুন প্লেয়ার সেটআপ করুন
+            player = jwplayer("player").setup({
+                file: newSource,
+                width: "100%",
+                aspectratio: "16:9",
+                autostart: true,
+                controls: true,
+                type: detectType(newSource)
+            });
+
+            // ✅ নতুন ভিডিও চালু করুন
+            player.play();
+        }
+    </script>
+
+</body>
+</html>

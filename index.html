@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Matches</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(120deg, #1b1b1b, #292929);
+            text-align: center;
+            padding: 10px;
+            color: white;
+        }
+
+        .header {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        .menu-icon {
+            width: 35px;
+            height: 35px;
+            background: #ff4747;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .menu-icon:hover {
+            transform: rotate(90deg);
+            background: #ff1212;
+        }
+
+        .container {
+            margin-top: 80px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .match-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 15px;
+            width: 350px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .match-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .match-header {
+            font-size: 14px;
+            color: #ddd;
+        }
+
+        .match-body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .match-body img {
+            width: 50px;
+        }
+
+        .live-label {
+            color: red;
+            font-weight: bold;
+            animation: blink 1s infinite alternate;
+        }
+
+        @keyframes blink {
+            0% { opacity: 1; }
+            100% { opacity: 0.5; }
+        }
+
+        .watch-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            background: linear-gradient(45deg, #ff2a2a, #ff6f6f);
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .watch-btn:hover {
+            background: linear-gradient(45deg, #ff0000, #ff4c4c);
+            transform: scale(1.05);
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #222;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 300px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translate(-50%, -60%); }
+            100% { opacity: 1; transform: translate(-50%, -50%); }
+        }
+
+        .popup h2 {
+            font-size: 18px;
+            color: #00ff00;
+        }
+
+        .popup ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .popup ul li {
+            margin: 10px 0;
+            cursor: pointer;
+            font-size: 16px;
+            text-align: left;
+            transition: 0.3s;
+        }
+
+        .popup ul li:hover {
+            text-decoration: underline;
+            color: #ff4747;
+        }
+
+        .close-btn {
+            background: black;
+            color: #00ff00;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            display: inline-block;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiwgcxYkWtTiQMYqlP-w56pcX3AI7rtfLxcl061Lyb7oZMITL7z3ZVlZOHbZWSyQc_cRsenghyphenhyphenBIRWfM9KftxM_sd2Jd7jnao5ZT9NxR2AYt5BVUbixj7e9R_e1zMeJlnHfuyN_afrEkdk304frtdYUjSLYpr6zdWMKQM-c-GZZZmYXV39522iCMIxV5rE/s2916/IMG-20250130-183747.jpg" alt="ইমেজ চোর 😆" width="100">
+        <div class="menu-icon">☰</div>
+    </div>
+
+    <div class="container">
+        <div class="match-card">
+            <div class="match-header">CRICKET - ICC INTERNATIONAL MATCHES AND PREMIER LEAGUE LIVE</div>
+            <div class="match-body">
+                <img src="https://cdn-icons-png.flaticon.com/128/5971/5971593.png" alt="Cricket">
+                CRICKET LIVE • <span class="live-label">LIVE</span>
+            </div>
+            <button class="watch-btn" onclick="openPopup('cricket')">WATCH NOW ▶</button>
+        </div>
+
+        <div class="match-card">
+            <div class="match-header">FOOTBALL - LIVE</div>
+            <div class="match-body">
+                <img src="https://cdn-icons-png.flaticon.com/128/1099/1099672.png" alt="Football">
+                FOOTBALL LIVE • <span class="live-label">LIVE</span>
+            </div>
+            <button class="watch-btn" onclick="openPopup('football')">WATCH NOW ▶</button>
+        </div>
+    </div>
+
+    <div class="popup" id="popup">
+        <h2>SELECT MATCH</h2>
+        <ul id="match-list"></ul>
+        <div class="close-btn" onclick="closePopup()">✖ CLOSE</div>
+    </div>
+
+    <script>
+        function openPopup(matchType) {
+            let matches = {
+                cricket: ["ipl.html?match=ipl-live", "pak-vs-nz.html?match=pak-vs-nz"],
+                football: ["player.html?match=fifa-live", "player.html?match=uefa"]
+            };
+
+            let matchList = document.getElementById("match-list");
+            matchList.innerHTML = "";
+
+            matches[matchType].forEach(link => {
+                let li = document.createElement("li");
+                li.textContent = link.split("=")[1].replace("-", " ").toUpperCase();
+                li.onclick = () => window.location.href = link;
+                matchList.appendChild(li);
+            });
+
+            document.getElementById("popup").style.display = "block";
+        }
+
+        function closePopup() {
+            document.getElementById("popup").style.display = "none";
+        }
+    </script>
+
+</body>
+</html>
