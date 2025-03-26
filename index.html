@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Live Matches</title>
+    <title>TiSPORTS - Live Cricket Live Footbal ✴️</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
@@ -21,6 +21,54 @@
             color: white;
         }
 
+        /* Loading screen */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: black;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+        }
+
+        .loading-screen img {
+            width: 150px;
+            margin-bottom: 20px;
+        }
+
+        .progress-bar {
+            width: 80%;
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-bar::before {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 100%;
+            background: #007bff;
+            animation: loading 3s linear forwards;
+        }
+
+        @keyframes loading {
+            0% { width: 0; }
+            100% { width: 100%; }
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Header */
         .header {
             background: rgba(0, 0, 0, 0.8);
             padding: 15px;
@@ -32,6 +80,11 @@
             width: 100%;
             top: 0;
             left: 0;
+            z-index: 1000;
+        }
+
+        .header img {
+            max-width: 100px;
         }
 
         .menu-icon {
@@ -127,6 +180,7 @@
             transform: scale(1.05);
         }
 
+        /* Popup */
         .popup {
             display: none;
             position: fixed;
@@ -184,39 +238,54 @@
     </style>
 </head>
 <body>
-
-    <div class="header">
-        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiwgcxYkWtTiQMYqlP-w56pcX3AI7rtfLxcl061Lyb7oZMITL7z3ZVlZOHbZWSyQc_cRsenghyphenhyphenBIRWfM9KftxM_sd2Jd7jnao5ZT9NxR2AYt5BVUbixj7e9R_e1zMeJlnHfuyN_afrEkdk304frtdYUjSLYpr6zdWMKQM-c-GZZZmYXV39522iCMIxV5rE/s2916/IMG-20250130-183747.jpg" alt="ইমেজ চোর 😆" width="100">
-        <div class="menu-icon">☰</div>
+    <!-- Loading screen -->
+    <div class="loading-screen">
+        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiwgcxYkWtTiQMYqlP-w56pcX3AI7rtfLxcl061Lyb7oZMITL7z3ZVlZOHbZWSyQc_cRsenghyphenhyphenBIRWfM9KftxM_sd2Jd7jnao5ZT9NxR2AYt5BVUbixj7e9R_e1zMeJlnHfuyN_afrEkdk304frtdYUjSLYpr6zdWMKQM-c-GZZZmYXV39522iCMIxV5rE/s2916/IMG-20250130-183747.jpg" alt="Loading">
+        <div class="progress-bar"></div>
     </div>
 
-    <div class="container">
-        <div class="match-card">
-            <div class="match-header">CRICKET - ICC INTERNATIONAL MATCHES AND PREMIER LEAGUE LIVE</div>
-            <div class="match-body">
-                <img src="https://cdn-icons-png.flaticon.com/128/5971/5971593.png" alt="Cricket">
-                CRICKET LIVE • <span class="live-label">LIVE</span>
-            </div>
-            <button class="watch-btn" onclick="openPopup('cricket')">WATCH NOW ▶</button>
+    <div class="main-content hidden">
+        <div class="header">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiwgcxYkWtTiQMYqlP-w56pcX3AI7rtfLxcl061Lyb7oZMITL7z3ZVlZOHbZWSyQc_cRsenghyphenhyphenBIRWfM9KftxM_sd2Jd7jnao5ZT9NxR2AYt5BVUbixj7e9R_e1zMeJlnHfuyN_afrEkdk304frtdYUjSLYpr6zdWMKQM-c-GZZZmYXV39522iCMIxV5rE/s2916/IMG-20250130-183747.jpg" alt="Logo" width="100">
+            <div class="menu-icon">☰</div>
         </div>
 
-        <div class="match-card">
-            <div class="match-header">FOOTBALL - LIVE</div>
-            <div class="match-body">
-                <img src="https://cdn-icons-png.flaticon.com/128/1099/1099672.png" alt="Football">
-                FOOTBALL LIVE • <span class="live-label">LIVE</span>
+        <div class="container">
+            <div class="match-card">
+                <div class="match-header">CRICKET - ICC INTERNATIONAL MATCHES AND PREMIER LEAGUE LIVE</div>
+                <div class="match-body">
+                    <img src="https://cdn-icons-png.flaticon.com/128/5971/5971593.png" alt="Cricket">
+                    CRICKET LIVE • <span class="live-label">LIVE</span>
+                </div>
+                <button class="watch-btn" onclick="openPopup('cricket')">WATCH NOW ▶</button>
             </div>
-            <button class="watch-btn" onclick="openPopup('football')">WATCH NOW ▶</button>
-        </div>
-    </div>
 
-    <div class="popup" id="popup">
-        <h2>SELECT MATCH</h2>
-        <ul id="match-list"></ul>
-        <div class="close-btn" onclick="closePopup()">✖ CLOSE</div>
+            <div class="match-card">
+                <div class="match-header">FOOTBALL - LIVE</div>
+                <div class="match-body">
+                    <img src="https://cdn-icons-png.flaticon.com/128/1099/1099672.png" alt="Football">
+                    FOOTBALL LIVE • <span class="live-label">LIVE</span>
+                </div>
+                <button class="watch-btn" onclick="openPopup('football')">WATCH NOW ▶</button>
+            </div>
+        </div>
+
+        <!-- Popup -->
+        <div class="popup" id="popup">
+            <h2>SELECT MATCH</h2>
+            <ul id="match-list"></ul>
+            <div class="close-btn" onclick="closePopup()">✖ CLOSE</div>
+        </div>
     </div>
 
     <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            setTimeout(() => {
+                document.querySelector(".loading-screen").classList.add("hidden");
+                document.querySelector(".main-content").classList.remove("hidden");
+            }, 3000); // 3 seconds delay before showing the main content
+        });
+
         function openPopup(matchType) {
             let matches = {
                 cricket: ["ipl.html?match=ipl-live", "pak-vs-nz.html?match=pak-vs-nz"],
@@ -240,6 +309,5 @@
             document.getElementById("popup").style.display = "none";
         }
     </script>
-
 </body>
 </html>
